@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tailwind CSS v4 — test project
 
-## Getting Started
+A small Next.js project used to test every example in my article about Tailwind CSS v4 before publishing it.
 
-First, run the development server:
+## Why this project exists
+
+AI models often suggest Tailwind v3 code, or features that never existed in Tailwind, when you ask about v4. Some of these suggestions fail silently: the class compiles, there is no error, and the style is simply not applied.
+
+I wrote the article from problems I hit while coding. This repository is where each example runs, so the article only shows code that actually works on a real project, not code that only looks right.
+
+## What each test covers
+
+Each article section has its own route under `app/testes/`, so every test runs in isolation.
+
+| Route | Article section | What it shows |
+| --- | --- | --- |
+| `/testes/dark-mode` | Dark mode with a toggle button | Without `@custom-variant dark`, the `dark:` classes ignore the `dark` class on `<html>` and follow the OS theme |
+| `/testes/layers` | Cascade layers | Why a custom class in `@layer components` loses to utilities, why selector specificity doesn't matter between layers, and how a layer declared after `utilities` makes one style (or a whole layout) win over another |
+
+More tests will be added as the remaining sections are validated.
+
+## Running it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open the routes above at `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Dark mode test
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Set your OS theme to **light**, otherwise the `dark:` classes are active from the start.
+2. Open `/testes/dark-mode` and click the button. The `<html>` gets the `dark` class, but the colors don't change.
+3. Add this line right below `@import "tailwindcss";` in `app/globals.css`:
 
-## Learn More
+   ```css
+   @custom-variant dark (&:where(.dark, .dark *));
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Click again. Now the theme switches.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Layers test
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open `/testes/layers`. A badge built only from utilities (blue and rounded by default) appears in five cases, each trying to make it red and square. The page describes the expected result for each case.
 
-## Deploy on Vercel
+## Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js 16.4
+- React 19.3
+- Tailwind CSS 4
