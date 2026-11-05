@@ -1,4 +1,3 @@
-import "../v4.css";
 
 // Teste da seção 2 do artigo: o que a IA sugere e não funciona no v4.
 // Cada linha tem a versão que a IA sugere (errada) e a versão do v4 (certa).
@@ -107,7 +106,7 @@ export default function ErrosIaTeste() {
       <Linha
         titulo="@variant dentro do CSS"
         esperado="Passe o mouse: o cartão inverte as cores (@variant hover)."
-        ia={<span className="text-xs text-zinc-600">(ver v4.css)</span>}
+        ia={<span className="text-xs text-zinc-600">(ver globals.css)</span>}
         v4={<div className="t6-cartao border p-2">passe o mouse</div>}
       />
     </main>

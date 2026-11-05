@@ -21,7 +21,7 @@ The home page (`/`) is an index of the article. Each article section has its own
 | `/secao-5-layers` | Cascade layers | Why a custom class in `@layer components` loses to utilities, why selector specificity doesn't matter between layers, and how a layer declared after `utilities` makes one style (or a whole layout) win over another |
 | `/secao-6-utility-variant` | Custom utilities and variants | `@utility` with `--value()`, `@apply` with a custom utility, `@custom-variant` and `@variant` |
 
-Sections 1, 2, 4 and 6 share `app/v4.css`. Section 5 has its own `layers.css`.
+The `@theme`, `@utility` and `@custom-variant` examples for sections 1, 2, 4 and 6 live in `app/globals.css`. Section 5 keeps its own `layers.css`.
 
 ## Running it
 

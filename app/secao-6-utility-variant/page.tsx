@@ -1,7 +1,6 @@
-import "../v4.css";
 
 // Teste da seção 6 do artigo: @utility, @custom-variant e @variant.
-// O CSS está em app/v4.css.
+// O CSS (@theme, @utility, etc.) está em app/globals.css.
 
 export default function UtilityVariantTeste() {
   return (

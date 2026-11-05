@@ -1,4 +1,3 @@
-import "../v4.css";
 
 // Teste da seção 4 do artigo: lista com map e o último item sem margem.
 // Cada lista mostra uma saída. O quadro cinza é a lista; a barra vermelha

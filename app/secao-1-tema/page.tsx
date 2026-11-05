@@ -1,7 +1,6 @@
-import "../v4.css";
 
 // Teste da seção 1 do artigo: a configuração agora mora no CSS (@theme).
-// O CSS está em app/v4.css.
+// O CSS (@theme, @utility, etc.) está em app/globals.css.
 
 export default function TemaTeste() {
   return (
