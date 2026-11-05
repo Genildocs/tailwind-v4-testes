@@ -1,0 +1,49 @@
+/*
+  Teste da seção 5: qual estilo vence quando dois disputam o mesmo elemento.
+
+  Esta linha fixa a ordem das layers. Quanto mais à direita, mais forte.
+  O @import "tailwindcss" já declara as quatro primeiras; aqui só
+  acrescentamos "overrides" no fim. Declarar a lista inteira garante a
+  ordem mesmo que este arquivo carregue antes do globals.css.
+*/
+@layer theme, base, components, utilities, overrides;
+
+/* Caso 1: estilo na layer components. Vem ANTES de utilities, então perde. */
+@layer components {
+  .badge-components {
+    background-color: #dc2626; /* vermelho */
+    border-radius: 0;
+  }
+}
+
+/* Caso 2: seletor bem mais específico, mas ainda em components. Também perde:
+   entre layers, a especificidade não conta. */
+@layer components {
+  #caso-especifico .badge-especifico {
+    background-color: #dc2626;
+    border-radius: 0;
+  }
+}
+
+/* Caso 3: o mesmo estilo na layer overrides, que vem DEPOIS de utilities. Vence. */
+@layer overrides {
+  .badge-overrides {
+    background-color: #dc2626;
+    border-radius: 0;
+  }
+}
+
+/* Caso 4: um layout inteiro mais forte que o padrão.
+   Tudo dentro de [data-tema="cinema"] ganha das utilities dos filhos. */
+@layer overrides {
+  [data-tema="cinema"] {
+    background-color: #0a0a0a;
+    color: #fbbf24; /* âmbar */
+  }
+
+  [data-tema="cinema"] [data-slot="badge"] {
+    background-color: #fbbf24;
+    color: #0a0a0a;
+    border-radius: 0;
+  }
+}
